@@ -1,0 +1,243 @@
+
+@selected: red;
+
+@blue-primary: #03A9F4;
+@blue-secondary: #0288D1;
+
+@white-secondary: #B3E5FC;
+@white-main: #FFF;
+
+@red-primary: #F44336;
+
+@orange-primary: #FF5722;
+
+@green-primary: #4CAF50;
+@green-secondary: #C8E6C9;
+
+@yellow-primary: #FFC107;
+
+.primary {
+	&.a {
+		background: @green-primary;
+		color: @white-main;
+	}
+
+	&.b {
+		background: @blue-primary;
+		color: @white-main;
+	}
+
+	&.c {
+		background: @yellow-primary;
+		color: @white-main;
+	}
+
+	&.d {
+		background: @orange-primary;
+		color: @white-main;
+	}
+
+	&.e {
+		background: @red-primary;
+		color: @white-main;
+	}
+
+	&.f {
+		background: @red-primary;
+		color: @white-main;
+	}
+}
+
+.secondary {
+	&.a {
+		background: @white-main; 
+		color: @green-primary;
+	}
+
+	&.b {
+		background: @white-main; 
+		color: @blue-primary;
+	}
+
+	&.c {
+		background: @white-main; 
+		color: @yellow-primary;
+	}
+
+	&.d {
+		background: @white-main; 
+		color: @orange-primary;
+	}
+
+	&.e {
+		background: @white-main; 
+		color: @red-primary;
+	}
+
+	&.f {
+		background: @white-main; 
+		color: @red-primary;
+	}
+}
+
+.explanation {
+	font-size: 2.5rem;
+}
+
+.should-you-hire {
+	height: 100%;
+	// background: @blue-main;
+	text-align: center;
+	color: @white-main;
+	font-size: 12em;
+
+	.explanation {
+		// color: @white-secondary;
+	}
+
+	.result {
+		font-weight: bold;
+	}
+}
+
+.most-appropriate-team {
+	height: 100%;
+	background: @white-main;
+	text-align: center;
+}
+
+.syh-container {
+	max-width: 1000px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.rank-des {
+	font-size: 0.4em;
+}
+
+.container {
+	.col-2 {
+		width: 20%;
+		float: left;
+	}
+
+	.col-8 {
+		width: 80%;
+	}
+
+	height: 100%;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+	.container {
+		.col-2 {
+			width: 100%;
+			float: none;
+		}
+
+		.col-8 {
+			width: 100%;
+		}
+
+		height: auto;
+		margin: 0 auto;
+	}
+
+	.syh-container {
+		max-width: 800px;
+		margin: 0 auto;
+		text-align: center!important;
+	}
+}
+
+.code-analyzer {
+	height: 100%;
+	display: block;
+	font-family: 'Roboto', sans-serif;
+}
+
+.file-selector {
+	position: relative;
+	height: 100%;
+	background: #212121;
+	overflow-y: auto;
+	color: @white-main;
+}
+
+.file-selection {
+	padding: 0.5em 1em;
+
+	word-break: break-all;
+
+	&.selected {
+		// background: @blue-primary;
+		// color: @white-main;
+
+		&.a {
+			background: @green-primary;
+			color: @white-main;
+		}
+
+		&.b {
+			background: @blue-primary;
+			color: @white-main;
+		}
+
+		&.c {
+			background: @yellow-primary;
+			color: @white-main;
+		}
+
+		&.d {
+			background: @orange-primary;
+			color: @white-main;
+		}
+
+		&.e {
+			background: @red-primary;
+			color: @white-main;
+		}
+
+		&.f {
+			background: @red-primary;
+			color: @white-main;
+		}
+	}
+
+	&:hover {
+		background: #727272;
+		cursor: pointer;
+		// color: @white-main;
+
+
+	}
+}
+
+.code-block {
+	overflow: auto;
+	font-size: 0.8em;
+	background: #212121;
+	padding: 1em;
+}
+
+.file-information {
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	// color: @white-main;
+	// background: @blue-primary;
+}
+
+.dat-pad {
+	padding: 0 1em;
+}
+
+.top-pad {
+	padding: 2em;
+}
+
+.big-icon {
+	font-size: 8em;	
+}

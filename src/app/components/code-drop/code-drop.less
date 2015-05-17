@@ -1,0 +1,66 @@
+// analyze-drop.less
+
+.pretty {
+	font-weight: lighter;
+	
+}
+
+.code-drop {
+
+	transition: all 0.5s;
+
+	&.dragging {
+		background: #727272;
+
+		.code-drop-icon {
+			color: #B6B6B6;
+		}
+	}
+
+	&.loading {
+		background: #727272;
+
+		.code-drop-icon {
+			color: #FFF;
+		}
+	}
+	color: #FFF;
+	z-index: 99;
+	display: block;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: #212121;
+	text-align: center;
+}
+
+.drop-file {
+	opacity: 0;
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.full {
+	z-index: 100;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+}
+
+.fa-spinner {
+    -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.code-drop-icon {
+	font-size: 4em;
+	color: #FFFFFF;
+}

@@ -247,9 +247,9 @@ function CodeAnalyzerController (codeService, $scope) {
 	};
 }
 
-angular.module('ai.components.code-analyzer', [
-    'ai.components.code-information',
-    'ai.services.code-service'
+angular.module('code-review.components.code-analyzer', [
+    'code-review.components.code-information',
+    'code-review.services.code-service'
 ])
 .controller('CodeAnalyzerController', CodeAnalyzerController)
 .directive('codeAnalyzer', CodeAnalyzerDirective);

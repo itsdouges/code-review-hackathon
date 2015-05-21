@@ -1,9 +1,6 @@
 'use strict';
 
-angular.module('ai', 
+angular.module('code-review', 
   [
-    'ngAnimate',
-    'ngTouch',
-
-    'ai.components'
+    'code-review.components'
   ]);

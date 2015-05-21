@@ -2,11 +2,10 @@
   "name": "anaylzeit",
   "version": "0.0.0",
   "dependencies": {
-    "angular-animate": "~1.3.4",
-    "angular-touch": "~1.3.4",
     "angular": "~1.3.4",
     "font-awesome": "~4.3.0",
-    "normalize-css": "~3.0.3"
+    "normalize-css": "~3.0.3",
+    "devicon": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.3.4"

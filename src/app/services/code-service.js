@@ -28,6 +28,6 @@ function CodeService ($http) {
 
 }
 
-angular.module('ai.services.code-service', [])
+angular.module('code-review.services.code-service', [])
 
 .service('codeService', CodeService);

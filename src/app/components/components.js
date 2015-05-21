@@ -1,5 +1,5 @@
 
-angular.module('ai.components', [
-	'ai.components.code-analyzer',
-	'ai.components.code-drop'
+angular.module('code-review.components', [
+	'code-review.components.code-analyzer',
+	'code-review.components.code-drop'
 ]);

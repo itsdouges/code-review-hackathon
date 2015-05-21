@@ -2,6 +2,30 @@
 
 'use strict';
 
+import 
+
+class CodeDropComponent {
+	constructor() {
+		this.restrict = 'E';
+		this.controller = 'CodeAnalyzerController';
+		this.controllerAs = 'ctrl';
+		this.scope = {};
+		this.template = [
+			'<input ng-if="itsGoTime()" onchange="angular.element(this).scope().onDrop(this)" class="full drop-file" type="file" />',				
+			
+			'<div ng-if="itsGoTime()" class="vertical">',
+				'<img ng-if="itsGoTime() && !loading" style="margin-left: 1em;" src="./images/mi9.jpg"/><br/>',
+				'<i ng-if="itsGoTime() && loading" class="fa fa-spinner code-drop-icon"></i>',
+				'<i ng-if="itsGoTime() && !loading" class="fa fa-file-archive-o code-drop-icon"></i>',
+			'</div>'
+		].join('');
+	}
+
+	link(scope, element, attributes, controller) {
+
+	}
+}
+
 function CodeDropDirective (codeService) {
 
 var directive = {};
@@ -79,6 +103,6 @@ var directive = {};
 		return directive;
 }
 
-angular.module('ai.components.code-drop', [])
+angular.module('code-review.components.code-drop', [])
 
 .directive('codeDrop', CodeDropDirective);

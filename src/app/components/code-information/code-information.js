@@ -19,6 +19,6 @@ function CodeInformationDirective () {
 	return directive;
 }
 
-angular.module('ai.components.code-information', [])
+angular.module('code-review.components.code-information', [])
 
 .directive('codeInformation,', CodeInformationDirective);

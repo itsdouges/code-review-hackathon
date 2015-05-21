@@ -1,6 +1,6 @@
 {
-  "name": "anaylzeit",
-  "version": "0.0.0",
+  "name": "CodeReview",
+  "version": "0.0.1",
   "dependencies": {},
   "scripts": {
     "test": "gulp test"

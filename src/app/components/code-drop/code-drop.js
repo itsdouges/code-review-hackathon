@@ -2,107 +2,89 @@
 
 'use strict';
 
-import 
-
-class CodeDropComponent {
-	constructor() {
-		this.restrict = 'E';
-		this.controller = 'CodeAnalyzerController';
-		this.controllerAs = 'ctrl';
-		this.scope = {};
-		this.template = [
-			'<input ng-if="itsGoTime()" onchange="angular.element(this).scope().onDrop(this)" class="full drop-file" type="file" />',				
-			
-			'<div ng-if="itsGoTime()" class="vertical">',
-				'<img ng-if="itsGoTime() && !loading" style="margin-left: 1em;" src="./images/mi9.jpg"/><br/>',
-				'<i ng-if="itsGoTime() && loading" class="fa fa-spinner code-drop-icon"></i>',
-				'<i ng-if="itsGoTime() && !loading" class="fa fa-file-archive-o code-drop-icon"></i>',
-			'</div>'
-		].join('');
+class CodeDropController {
+	constructor(codeService) {
+		this.codeService = codeService;
 	}
 
-	link(scope, element, attributes, controller) {
+	onDrop(e) {
+		this.onDragLeave();
+		this.loading = true;
 
+		function test() {
+			this.codeService.analyze(e.files[0]).success(function () {
+				window.loaded = true;
+			});	
+		}
+
+		setTimeout(test.bind(this), 2000);
+	}
+
+	onDragEnter() {
+		this.dragging = true;
+	}
+
+	onDragLeave() {
+		this.dragging = false;
 	}
 }
 
-function CodeDropDirective (codeService) {
+function CodeDropDirective () {
 
-var directive = {};
-		directive.restrict = 'E';
+	var LOADING_CLASS = 'loading';
+	var DISABLED_CLASS = 'disabled';
+	var DRAGGING_CLASS = 'dragging';
 
-		directive.controller = 'CodeAnalyzerController';
-		directive.controllerAs = 'ctrl';
+	var directive = {};
+	directive.restrict = 'E';
+	directive.controller = 'CodeDropController';
+	directive.controllerAs = 'ctrl';
+	directive.scope = {};
 
-		directive.scope = {};
+	directive.template =
+		`<div class="code-drop" 
+			ng-class="{` + 
+				LOADING_CLASS + `: ctrl.loading,` + 
+				DRAGGING_CLASS + `: ctrl.dragging }" 
+			ng-if="itsGoTime()">
 
-		directive.template = [
-			'<input ng-if="itsGoTime()" onchange="angular.element(this).scope().onDrop(this)" class="full drop-file" type="file" />',				
-			'<div ng-if="itsGoTime()" class="vertical">',
-				'<img ng-if="itsGoTime() && !loading" style="margin-left: 1em;" src="./images/mi9.jpg"/><br/>',
-				'<i ng-if="itsGoTime() && loading" class="fa fa-spinner code-drop-icon"></i>',
-				'<i ng-if="itsGoTime() && !loading" class="fa fa-file-archive-o code-drop-icon"></i>',
-				// '<h1 class="pretty">Mi9 Test Analyser</h1>',
+			<input 
+				onchange="angular.element(this).scope().onDrop(this)" 
+				class="full drop-file" 
+				type="file"
+				ng-disabled="ctrl.loading" />
+			
+			<div class="vertical">
+				<img ng-if="!ctrl.loading" style="margin-left: 1em;" src="./images/mi9.jpg"/><br/>
+				<i ng-if="ctrl.loading" class="fa fa-spinner code-drop-icon"></i>
+				<i ng-if="!ctrl.loading" class="fa fa-file-archive-o code-drop-icon"></i>
+			</div>
+		</div>`;
 
-			'</div>'
-		].join('');
+	directive.link = function (scope, element, attributes, controller) {
+		scope.itsGoTime = function () {
+			return !window.loaded;
+		};
 
-		directive.link = function (scope, element, attributes, controller) {
-			scope.loading = false;
+		scope.onDrop = function (e) {
+			controller.onDrop(e);
+			scope.$apply();
+		};
 
-			window.loaded = false; // disgusting hack
+		element.on('dragenter', function (e) {
+			controller.onDragEnter();
+			scope.$apply();
+		});
 
-			scope.itsGoTime = function () {
+		element.on('dragleave', function (e) {
+			controller.onDragLeave();
+			scope.$apply();
+		});
+	}
 
-				return !window.loaded;
-
-			};
-
-			element.addClass('code-drop');
-
-			scope.onDrop = function (e) {
-				console.log(e.files);
-				console.log('dropped');
-				element.addClass('loading');
-				scope.loading = true;
-				scope.$apply();
-				// todo: add upload call here
-
-				// scope.$emit('codeLoaded'); // call this in the callback
-
-				// set this in callback
-
-				setTimeout(function () {
-					codeService.analyze(e.files[0]).success(function () {
-						window.loaded = true; // really bad hack. dont do this.
-						element.removeClass('code-drop');
-						// scope.$apply();
-					});
-				}, 5000);
-
-				
-			};
-
-			element.on('dragenter', function (e) {
-				e.preventDefault();
-				console.log('in');
-
-				element.addClass('dragging');
-				return false;
-			});
-
-			element.on('dragleave', function (e) {
-				e.preventDefault();  
-				console.log('out');
-
-				element.removeClass('dragging');
-				return false;
-			});
-		}
-
-		return directive;
+	return directive;
 }
 
 angular.module('code-review.components.code-drop', [])
-
+.controller('CodeDropController', CodeDropController)
 .directive('codeDrop', CodeDropDirective);

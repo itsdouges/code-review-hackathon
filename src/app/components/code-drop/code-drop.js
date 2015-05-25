@@ -11,6 +11,7 @@ class CodeDropController {
 		this.onDragLeave();
 		this.loading = true;
 
+		// TODO: Develop service call.
 		function test() {
 			this.codeService.analyze(e.files[0]).success(function () {
 				window.loaded = true;

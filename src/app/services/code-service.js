@@ -1,31 +1,32 @@
+// code-service.js
 
+class CodeService {
+    constructor($http) {
+        this.$http = $http;
+        this.data = {};
+    }
 
-function CodeService ($http) {
+    analyze(file) {
+        var uri = this.buildUri(file.name);
 
-    var data = {};
+        function trigger(e) {
+            console.log(e);
+            this.data = e;
+        }
 
-    function buildUri(fileName) {
+        var promise = this.$http.get(uri);
+        promise.success(trigger.bind(this));
+
+        return promise;
+    }
+
+    buildUri(fileName) {
         return './data/' + fileName + '.json';
     }
 
-	this.analyze = function (file) {
-
-        var uri = buildUri(file.name);
-
-        var promise = $http.get(uri);
-		promise.success(function (e) {
-            console.log(e);
-            data = e;
-        });
-
-        return promise;
-
-	};
-
-    this.getResult = function () {
-        return data;
-    };
-
+    getResult() {
+        return this.data;
+    }
 }
 
 angular.module('code-review.services.code-service', [])

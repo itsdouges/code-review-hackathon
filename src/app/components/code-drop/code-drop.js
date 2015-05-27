@@ -13,12 +13,14 @@ class CodeDropController {
 
 		// TODO: Develop service call.
 		function test() {
+			window.loaded = true;
 			this.codeService.analyze(e.files[0]).success(function () {
 				window.loaded = true;
+				console.log('hey');
 			});	
 		}
 
-		setTimeout(test.bind(this), 2000);
+		setTimeout(test.bind(this), 1000);
 	}
 
 	onDragEnter() {

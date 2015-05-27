@@ -10,12 +10,11 @@ class CodeService {
         var uri = this.buildUri(file.name);
 
         function trigger(e) {
-            console.log(e);
             this.data = e;
         }
 
         var promise = this.$http.get(uri);
-        promise.success(trigger.bind(this));
+        promise.then(trigger.bind(this));
 
         return promise;
     }

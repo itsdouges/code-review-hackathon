@@ -9,12 +9,17 @@ class CodeService {
     analyze(file) {
         var uri = this.buildUri(file.name);
 
-        function trigger(e) {
+        function success(e) {
             this.data = e;
+            console.log(this.data);
+        }
+
+        function error(e) {
+            
         }
 
         var promise = this.$http.get(uri);
-        promise.then(trigger.bind(this));
+        promise.then(success.bind(this), error);
 
         return promise;
     }

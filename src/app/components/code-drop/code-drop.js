@@ -10,13 +10,15 @@ class CodeDropController {
 	onDrop(e) {
 		this.onDragLeave();
 		this.loading = true;
+		console.log('file dropped');
 
 		// TODO: Develop service call.
 		function test() {
 			window.loaded = true;
-			this.codeService.analyze(e.files[0]).success(function () {
+			
+			this.codeService.analyze(e.files[0]).then(function () {
+				console.log('file uploaded');
 				window.loaded = true;
-				console.log('hey');
 			});	
 		}
 
@@ -48,7 +50,7 @@ function CodeDropDirective () {
 		`<div class="code-drop" 
 			ng-class="{` + 
 				LOADING_CLASS + `: ctrl.loading,` + 
-				DRAGGING_CLASS + `: ctrl.dragging }" 
+				DRAGGING_CLASS + `: ctrl.dragging }"
 			ng-if="itsGoTime()">
 
 			<input 
